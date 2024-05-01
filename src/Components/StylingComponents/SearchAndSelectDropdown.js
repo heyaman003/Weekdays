@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 
 export default function SearchAndSelectDropdown({ data, placeholder }) {
+  console.log(data);
   const fixedOptions = [];
   const [value, setValue] = React.useState([...fixedOptions]);
 
