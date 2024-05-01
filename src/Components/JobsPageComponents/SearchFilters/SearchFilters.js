@@ -7,10 +7,15 @@ import SelectComponent from "../../StylingComponents/SelectComponent";
 import { useSelector, useDispatch } from "react-redux";
 
 export default function SearchFilters() {
-  const { jobs, techStackData } = useSelector((state) => state.JobsDataState);
+  const {
+    jobs,
+    techStackData,
+    minBasePaySalary,
+    remoteOrNotData,
+    minExperienceData,
+  } = useSelector((state) => state.JobsDataState);
 
-  console.log(jobs?.jdList);
-  console.log(techStackData);
+  // console.log(jobs?.jdList);
 
   const [minExperience, setMinExperience] = useState("");
   const [companyName, setCompanyName] = useState("");
@@ -26,19 +31,25 @@ export default function SearchFilters() {
         placeholder="Role"
       />
       <SelectComponent
-        data={jobs?.jdList?.map((data) => data.jobRole.toUpperCase())}
+        options={minExperienceData}
+        data={minExperience}
+        setData={setMinExperience}
         placeholder="Min Experience"
       />
       <SelectComponent
-        data={jobs?.jdList?.map((data) => data.location.toUpperCase())}
+        // data={jobs?.jdList?.map((data) => data.companyName.toUpperCase())}
         placeholder="Company Name"
       />
       <SelectComponent
-        data={jobs?.jdList?.map((data) => data.location.toUpperCase())}
+        options={jobs?.jdList?.map((data) => data.location.toUpperCase())}
+        data={location}
+        setData={setLocation}
         placeholder="Location"
       />
       <SelectComponent
-        data={jobs?.jdList?.map((data) => data.jobRole.toUpperCase())}
+        options={remoteOrNotData}
+        data={remoteOrNot}
+        setData={setRemoteOrNot}
         placeholder="Remote/on-site"
       />
       <SelectComponent
@@ -48,7 +59,9 @@ export default function SearchFilters() {
         placeholder="Tech Stack"
       />
       <SelectComponent
-        data={jobs?.jdList?.map((data) => data.jobRole.toUpperCase())}
+        options={minBasePaySalary.map((data) => data.toUpperCase())}
+        data={minBasePay}
+        setData={setMinBasePay}
         placeholder="Min Base Pay"
       />
     </div>

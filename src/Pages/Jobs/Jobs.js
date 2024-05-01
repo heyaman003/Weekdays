@@ -24,7 +24,7 @@ export default function Jobs() {
 
   const { jobs } = useSelector((state) => state.JobsDataState);
 
-  console.log(jobs);
+  // console.log(jobs);
 
   React.useEffect(() => {
     if (responseGetJobs.isSuccess) {
@@ -41,14 +41,19 @@ export default function Jobs() {
             height: "100vh",
             justifyContent: "center",
             alignItems: "center",
-          }}>
+          }}
+        >
           <CircularProgress />
         </Box>
       ) : (
-        <div className='Jobs'>
-          <SearchFilters />
-          <JobCards />
-        </div>
+        <>
+          {responseGetJobs.isSuccess && (
+            <div className="Jobs">
+              <SearchFilters />
+              <JobCards />
+            </div>
+          )}
+        </>
       )}
     </>
   );

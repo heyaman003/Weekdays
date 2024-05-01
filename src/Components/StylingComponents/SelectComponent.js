@@ -27,10 +27,15 @@ export default function SelectComponent({
           label={placeholder}
           onChange={handleChange}
         >
-          {options.map}
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          {options
+            ? options.map((item, index) => {
+                return (
+                  <MenuItem value={item} key={index}>
+                    {item}
+                  </MenuItem>
+                );
+              })
+            : []}
         </Select>
       </FormControl>
     </Box>
