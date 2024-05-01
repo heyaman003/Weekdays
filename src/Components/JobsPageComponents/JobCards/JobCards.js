@@ -15,8 +15,10 @@ export default function JobCards() {
           <img src={iconImage} alt='iconImage' />
           <div className='jobcard-companyDetails-text'>
             <p className='jobcard-companyName'>Company Name</p>
-            <p className='jobcard-JobName'>JOB NAME</p>
-            <p className='jobcard-JobLocation'>Location</p>
+            <p className='jobcard-JobName'>{item?.jobRole.toUpperCase()}</p>
+            <p className='jobcard-JobLocation'>
+              {item?.location.toUpperCase()}
+            </p>
           </div>
         </div>
         <p style={{ fontWeight: 400, color: "#8b8b8b" }}>
@@ -24,17 +26,7 @@ export default function JobCards() {
         </p>
         <div className='jobcard-about'>
           <p className='jobcard-about-heading'>About Company</p>
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s
-            with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus
-            PageMaker including versions of Lorem Ipsum.
-          </p>
+          <p>{item?.jobDetailsFromCompany}</p>
           <div className='jobcard-about-ViewJob'>View Job</div>
         </div>
         <div className=''>

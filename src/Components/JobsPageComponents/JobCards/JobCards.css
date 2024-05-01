@@ -9,7 +9,11 @@
     
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 1rem;
-    padding: 1rem;
+    padding: 2rem;
+    transition: 0.5s ease-in-out;
+}
+.jobcard:hover {
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2), 0 20px 50px 0 rgba(0, 0, 0, 0.19);
 }
 .jobcard-postedTime {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.19);
@@ -81,4 +85,5 @@ button {
     border-radius: 8px;
     font-size: 1rem;
     font-weight: 500;
+    cursor: pointer;
 }
