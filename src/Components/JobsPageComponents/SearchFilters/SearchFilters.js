@@ -7,17 +7,17 @@ import { useSelector, useDispatch } from "react-redux";
 export default function SearchFilters() {
   const { jobs } = useSelector((state) => state.JobsDataState);
 
-  console.log(jobs);
+  console.log(jobs?.jdList);
   return (
     <div className='JobSearchFilter'>
       <SearchAndSelectDropdown
-        data={jobs}
+        data={jobs?.jdList?.map((data) => data.jobRole)}
         placeholder='Min Experience
 '
       />
       <SearchAndSelectDropdown data={jobs} placeholder='Company Name' />
       <SearchAndSelectDropdown
-        data={jobs}
+        data={jobs?.jdList?.map((data) => data.location)}
         placeholder='Location
 '
       />
@@ -32,7 +32,7 @@ export default function SearchFilters() {
 '
       />
       <SearchAndSelectDropdown
-        data={jobs}
+        data={jobs?.jdList?.map((data) => data.jobRole)}
         placeholder='Role
 '
       />

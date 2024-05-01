@@ -18,12 +18,12 @@ export default function SearchAndSelectDropdown({ data, placeholder }) {
           ...newValue.filter((option) => fixedOptions.indexOf(option) === -1),
         ]);
       }}
-      options={top100Films}
-      getOptionLabel={(option) => option.title}
+      options={data ? data : []}
+      getOptionLabel={(option) => option}
       renderTags={(tagValue, getTagProps) =>
         tagValue.map((option, index) => (
           <Chip
-            label={option.title}
+            label={option}
             {...getTagProps({ index })}
             // disabled={fixedOptions.indexOf(option) !== -1}
           />
