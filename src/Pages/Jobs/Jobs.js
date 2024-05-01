@@ -6,19 +6,33 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 // -------------------------
 
+import { useSelector, useDispatch } from "react-redux";
+
 // Components
 import SearchFilters from "../../Components/JobsPageComponents/SearchFilters/SearchFilters";
 import JobCards from "../../Components/JobsPageComponents/JobCards/JobCards";
 
 import { useGetJobsQuery } from "../../Store/APIServices/JobData";
+import { getAllJobs } from "../../Store/Slices/JobsDataSlice";
 
 export default function Jobs() {
+  // This is used in redux to store data into state
+  const dispatch = useDispatch();
+  // -------------------------------------
+
   const responseGetJobs = useGetJobsQuery();
 
-  console.log(responseGetJobs);
+  const { jobs } = useSelector((state) => state.JobsDataState);
+
+  console.log(jobs);
+
+  React.useEffect(() => {
+    if (responseGetJobs.isSuccess) {
+      dispatch(getAllJobs(responseGetJobs?.currentData));
+    }
+  }, [responseGetJobs.isSuccess]);
   return (
     <div className='Jobs'>
-      <SearchFilters />
       {responseGetJobs.isLoading ? (
         <Box
           sx={{
@@ -31,7 +45,10 @@ export default function Jobs() {
           <CircularProgress />
         </Box>
       ) : (
-        <JobCards />
+        <>
+          <SearchFilters />
+          <JobCards />
+        </>
       )}
     </div>
   );

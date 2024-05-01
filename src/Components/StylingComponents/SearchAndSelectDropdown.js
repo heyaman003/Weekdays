@@ -3,8 +3,8 @@ import Chip from "@mui/material/Chip";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 
-export default function SearchAndSelectDropdown() {
-  const fixedOptions = [top100Films[0]];
+export default function SearchAndSelectDropdown({ data, placeholder }) {
+  const fixedOptions = [];
   const [value, setValue] = React.useState([...fixedOptions]);
 
   return (
@@ -25,12 +25,14 @@ export default function SearchAndSelectDropdown() {
           <Chip
             label={option.title}
             {...getTagProps({ index })}
-            disabled={fixedOptions.indexOf(option) !== -1}
+            // disabled={fixedOptions.indexOf(option) !== -1}
           />
         ))
       }
       style={{ width: 500 }}
-      renderInput={(params) => <TextField {...params} placeholder='Roles' />}
+      renderInput={(params) => (
+        <TextField {...params} placeholder={placeholder} />
+      )}
     />
   );
 }
