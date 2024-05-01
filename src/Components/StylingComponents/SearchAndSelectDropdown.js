@@ -15,7 +15,7 @@ export default function SearchAndSelectDropdown({ data, placeholder }) {
   return (
     <Autocomplete
       multiple
-      id='fixed-tags-demo'
+      id="fixed-tags-demo"
       value={value}
       onChange={(event, newValue) => {
         setValue([
@@ -34,7 +34,7 @@ export default function SearchAndSelectDropdown({ data, placeholder }) {
           />
         ))
       }
-      style={{ width: 500 }}
+      style={{ width: "100%" }}
       renderInput={(params) => (
         <TextField {...params} placeholder={placeholder} />
       )}

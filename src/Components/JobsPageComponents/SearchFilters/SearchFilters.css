@@ -1,6 +1,21 @@
 .JobSearchFilter {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    gap: 1rem;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 1rem;
+}
+
+@media screen and (max-width: 2000px) {
+}
+@media screen and (max-width: 1050px) {
+  .JobSearchFilter {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media screen and (max-width: 670px) {
+  .JobSearchFilter {
+    /* display: grid; */
+    grid-template-columns: 1fr 1fr;
+  }
 }

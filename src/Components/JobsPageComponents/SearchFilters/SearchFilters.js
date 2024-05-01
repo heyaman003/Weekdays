@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./SearchFilters.css";
 
 import SearchAndSelectDropdown from "../../StylingComponents/SearchAndSelectDropdown";
+import SelectComponent from "../../StylingComponents/SelectComponent";
+
 import { useSelector, useDispatch } from "react-redux";
 
 export default function SearchFilters() {
@@ -10,41 +12,44 @@ export default function SearchFilters() {
   console.log(jobs?.jdList);
   console.log(techStackData);
 
+  const [minExperience, setMinExperience] = useState("");
+  const [companyName, setCompanyName] = useState("");
+  const [location, setLocation] = useState("");
+  const [remoteOrNot, setRemoteOrNot] = useState("");
+  const [techStack, setTechStack] = useState("");
+  const [minBasePay, setMinBasePay] = useState("");
+
   return (
-    <div className='JobSearchFilter'>
+    <div className="JobSearchFilter">
       <SearchAndSelectDropdown
         data={jobs?.jdList?.map((data) => data.jobRole.toUpperCase())}
-        placeholder='Min Experience
-'
+        placeholder="Role"
       />
-      <SearchAndSelectDropdown
+      <SelectComponent
+        data={jobs?.jdList?.map((data) => data.jobRole.toUpperCase())}
+        placeholder="Min Experience"
+      />
+      <SelectComponent
         data={jobs?.jdList?.map((data) => data.location.toUpperCase())}
-        placeholder='Company Name'
+        placeholder="Company Name"
       />
-      <SearchAndSelectDropdown
+      <SelectComponent
         data={jobs?.jdList?.map((data) => data.location.toUpperCase())}
-        placeholder='Location
-'
+        placeholder="Location"
       />
-      <SearchAndSelectDropdown
+      <SelectComponent
         data={jobs?.jdList?.map((data) => data.jobRole.toUpperCase())}
-        placeholder='Remote/on-site
-'
+        placeholder="Remote/on-site"
       />
-      <SearchAndSelectDropdown
-        data={techStackData.map((data) => data.toUpperCase())}
-        placeholder='Tech Stack
-'
+      <SelectComponent
+        options={techStackData.map((data) => data.toUpperCase())}
+        data={techStack}
+        setData={setTechStack}
+        placeholder="Tech Stack"
       />
-      <SearchAndSelectDropdown
+      <SelectComponent
         data={jobs?.jdList?.map((data) => data.jobRole.toUpperCase())}
-        placeholder='Role
-'
-      />
-      <SearchAndSelectDropdown
-        data={jobs?.jdList?.map((data) => data.jobRole.toUpperCase())}
-        placeholder='Min Base Pay
-'
+        placeholder="Min Base Pay"
       />
     </div>
   );

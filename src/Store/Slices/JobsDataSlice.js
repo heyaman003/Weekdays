@@ -20,6 +20,8 @@ const initialState = {
     "Node JS",
     "React",
   ],
+  remoteOrNot: ["Remote", "Hybrid", "In-Office"],
+  minBasePaySalary: ["0L", "10L", "20L", "30L", "40L", "50L", "60L", "70L"],
 };
 
 const jobsDataSlice = createSlice({

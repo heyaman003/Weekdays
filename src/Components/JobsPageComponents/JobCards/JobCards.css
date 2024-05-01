@@ -1,89 +1,102 @@
 .jobCards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
 }
 .jobcard {
-    display: flex;
-    flex-direction: column;
-    
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 1rem;
-    padding: 2rem;
-    transition: 0.5s ease-in-out;
+  display: flex;
+  flex-direction: column;
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 1rem;
+  padding: 2rem;
+  transition: 0.5s ease-in-out;
 }
 .jobcard:hover {
-    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2), 0 20px 50px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2),
+    0 20px 50px 0 rgba(0, 0, 0, 0.19);
 }
 .jobcard-postedTime {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.19);
-    color: #313131;
-    width: fit-content;
-    border-radius: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    font-size: 14px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.19);
+  color: #313131;
+  width: fit-content;
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 14px;
 }
 .jobcard-companyDetails {
-    display: flex;
-    gap: 1rem;
-    align-items:flex-start;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
 }
 .jobcard-companyDetails > img {
-    width: 50px;
-    height: 50px;
+  width: 50px;
+  height: 50px;
 }
 
 .jobcard-companyDetails > .jobcard-companyDetails-text > .jobcard-companyName {
-   font-weight: 600;
-   line-height: 4px;
-   color: #8b8b8b;
-   
+  font-weight: 600;
+  line-height: 4px;
+  color: #8b8b8b;
 }
 .jobcard-companyDetails > .jobcard-companyDetails-text > .jobcard-JobName {
-    /* font-size: 14px; */
-    line-height: 6px;
+  /* font-size: 14px; */
+  line-height: 6px;
 }
 .jobcard-companyDetails > .jobcard-companyDetails-text > .jobcard-JobLocation {
-    font-size: 14px;
-    line-height: 6px;
+  font-size: 14px;
+  line-height: 6px;
 }
 
 .jobcard-about {
-    position: relative;
+  position: relative;
 }
 
 .jobcard-about-heading {
-    line-height: 2px;
-    font-size: 1rem;
-    font-weight: 600;
+  line-height: 2px;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .jobcard-about-ViewJob {
-    position: absolute;
-    width: 100%;
-    text-align: center;
-    background-color: white;
-    bottom: 0;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    opacity: 80%;
-    color: #4943da;
-    cursor: pointer;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  background-color: white;
+  bottom: 0;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  opacity: 80%;
+  color: #4943da;
+  cursor: pointer;
 }
 
 button {
-    background: none;
-    border: none;
-    outline: none;
-    box-shadow: none;
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
 }
 
 .jobcard-button {
-    background-color: rgb(85, 239, 196);
-    padding: 1rem;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
+  background-color: rgb(85, 239, 196);
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 2000px) {
+}
+@media screen and (max-width: 1050px) {
+  .jobCards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media screen and (max-width: 670px) {
+  .jobCards {
+    grid-template-columns: 1fr;
+  }
 }
