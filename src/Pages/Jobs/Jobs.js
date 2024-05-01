@@ -32,7 +32,7 @@ export default function Jobs() {
     }
   }, [responseGetJobs.isSuccess]);
   return (
-    <div className='Jobs'>
+    <>
       {responseGetJobs.isLoading ? (
         <Box
           sx={{
@@ -45,11 +45,11 @@ export default function Jobs() {
           <CircularProgress />
         </Box>
       ) : (
-        <>
+        <div className='Jobs'>
           <SearchFilters />
           <JobCards />
-        </>
+        </div>
       )}
-    </div>
+    </>
   );
 }
