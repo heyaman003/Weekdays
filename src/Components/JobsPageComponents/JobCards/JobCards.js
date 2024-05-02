@@ -4,54 +4,60 @@ import { useSelector, useDispatch } from "react-redux";
 import iconImage from "../../../Assets/icon.png";
 
 import * as React from "react";
-import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
+// import CircularProgress from "@mui/material/CircularProgress";
+// import Box from "@mui/material/Box";
 
-import { useGetJobsQuery } from "../../../Store/APIServices/JobData";
-import { getAllJobs } from "../../../Store/Slices/JobsDataSlice";
+// import { useGetJobsMutation } from "../../../Store/APIServices/JobData";
+import {
+  // getAllJobs,
+  increaseLimitCount,
+} from "../../../Store/Slices/JobsDataSlice";
 
 export default function JobCards() {
   const dispatch = useDispatch();
-  const { filterDataOptions } = useSelector((state) => state.JobsDataState);
+  const { jobs, filterDataOptions, limitCount } = useSelector(
+    (state) => state.JobsDataState
+  );
 
-  const responseGetJobs = useGetJobsQuery();
+  // console.log(jobs);
 
-  React.useEffect(() => {
-    if (responseGetJobs.isSuccess) {
-      dispatch(getAllJobs(responseGetJobs?.currentData));
-    }
-  }, [responseGetJobs.isSuccess]);
+  // const [getJobs, responseGetJobs] = useGetJobsMutation();
 
-  const [dataToBeVisible, setDataToBeVisible] = React.useState([]);
+  // React.useEffect(() => {
+  //   if (responseGetJobs.isSuccess) {
+  //     dispatch(getAllJobs(responseGetJobs?.currentData));
+  //   }
+  // }, [responseGetJobs.isSuccess]);
 
-  const fetchMoreDataWithScrolling = () => {
-    const newData = dataToBeVisible.length
-      ? [...dataToBeVisible, ...responseGetJobs?.currentData?.jdList]
-      : responseGetJobs?.currentData?.jdList;
-    setDataToBeVisible(newData);
-  };
+  // const [dataToBeVisible, setDataToBeVisible] = React.useState([]);
 
-  React.useEffect(() => {
-    if (responseGetJobs.isSuccess) {
-      fetchMoreDataWithScrolling();
-    }
-  }, [responseGetJobs.isSuccess]);
+  // const fetchMoreDataWithScrolling = () => {
+  //   const newData = dataToBeVisible.length
+  //     ? [...dataToBeVisible, ...jobs?.jdList]
+  //     : jobs?.jdList;
+  //   setDataToBeVisible(newData);
+  // };
+
+  // React.useEffect(() => {
+  //   fetchMoreDataWithScrolling();
+  // }, []);
 
   const handleScroll = () => {
     if (
       window.innerHeight + document.documentElement.scrollTop ===
       document.documentElement.offsetHeight
     ) {
-      fetchMoreDataWithScrolling();
+      // fetchMoreDataWithScrolling();
+      dispatch(increaseLimitCount(limitCount + 20));
     }
   };
 
   React.useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [dataToBeVisible]);
+  }, [jobs]);
 
-  const filteredData = dataToBeVisible?.filter((item, index) => {
+  const filteredData = jobs?.jdList?.filter((item, index) => {
     if (filterDataOptions?.jobRole?.includes(item?.jobRole)) {
       return item;
     }
@@ -116,7 +122,7 @@ export default function JobCards() {
     );
   });
 
-  const renderedJobCardsUnfiltered = dataToBeVisible?.map((item, index) => {
+  const renderedJobCardsUnfiltered = jobs?.jdList?.map((item, index) => {
     return (
       <div className="jobcard" key={`${item?.jdUid} - ${index}`}>
         <p className="jobcard-postedTime">Posted 12 days ago</p>
@@ -149,29 +155,13 @@ export default function JobCards() {
     );
   });
 
-  console.log(filteredData);
+  // console.log(filteredData);
 
   return (
     <div className="jobCards">
-      {responseGetJobs.isLoading ? (
-        <Box
-          sx={{
-            display: "flex",
-            width: "100%",
-            height: "100vh",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <CircularProgress />
-        </Box>
-      ) : (
-        <>
-          {filteredData?.length === 0
-            ? renderedJobCardsUnfiltered
-            : renderedJobCards}
-        </>
-      )}
+      {filteredData?.length === 0
+        ? renderedJobCardsUnfiltered
+        : renderedJobCards}
     </div>
   );
 }

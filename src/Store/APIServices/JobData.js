@@ -7,8 +7,8 @@ export const JobDataService = createApi({
   reducerPath: "jobs",
   baseQuery: fetchBaseQuery({ baseUrl: process.env.React_App_Base_url }),
   endpoints: (builder) => ({
-    getJobs: builder.query({
-      query: () => {
+    getJobs: builder.mutation({
+      query: (limit) => {
         return {
           url: `getSampleJdJSON`,
           method: "POST",
@@ -16,7 +16,7 @@ export const JobDataService = createApi({
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            limit: 10,
+            limit: limit,
             offset: 0,
           }),
         };
@@ -25,4 +25,4 @@ export const JobDataService = createApi({
   }),
 });
 
-export const { useGetJobsQuery } = JobDataService;
+export const { useGetJobsMutation } = JobDataService;

@@ -7,30 +7,51 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 // -------------------------
 
-import { useGetJobsQuery } from "./Store/APIServices/JobData";
+import { useGetJobsMutation } from "./Store/APIServices/JobData";
+import { getAllJobs } from "./Store/Slices/JobsDataSlice";
+
+import { useSelector, useDispatch } from "react-redux";
 
 // Pages Import
 const JobsPage = lazy(() => import("./Pages/Jobs/Jobs"));
 
 function App() {
-  const responseGetJobs = useGetJobsQuery();
+  const dispatch = useDispatch();
+  const [getJobs, responseGetJobs] = useGetJobsMutation();
 
-  // console.log(responseGetJobs);
+  const { limitCount } = useSelector((state) => state.JobsDataState);
+
+  React.useEffect(() => {});
+
+  React.useEffect(() => {
+    getJobs(limitCount);
+  }, [limitCount]);
+
+  React.useEffect(() => {
+    if (responseGetJobs.isSuccess) {
+      dispatch(getAllJobs(responseGetJobs?.data));
+    }
+  }, [responseGetJobs.isSuccess]);
 
   return (
     <>
-      <div className='App'>
-        <Suspense
-          fallback={
-            <>
-              <Box sx={{ display: "flex" }}>
-                <CircularProgress />
-              </Box>
-            </>
-          }>
+      {responseGetJobs.isLoading ? (
+        <Box
+          sx={{
+            display: "flex",
+            width: "100%",
+            height: "100vh",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <CircularProgress />
+        </Box>
+      ) : (
+        <div className="App">
           <JobsPage />
-        </Suspense>
-      </div>
+        </div>
+      )}
     </>
   );
 }

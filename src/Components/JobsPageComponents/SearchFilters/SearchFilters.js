@@ -15,7 +15,7 @@ export default function SearchFilters() {
     // techStackData,
     // minBasePaySalary,
     remoteOrNotData,
-    filterDataOptions,
+    // filterDataOptions,
   } = useSelector((state) => state.JobsDataState);
 
   const [role, setRole] = useState("");
@@ -97,9 +97,9 @@ export default function SearchFilters() {
           placeholder="Tech Stack"
         />
         <SelectComponent
-          options={jobs?.jdList?.map(
-            (data) => data.minJdSalary !== null && data.minJdSalary
-          )}
+          options={jobs?.jdList
+            ?.map((data) => data.minJdSalary)
+            .sort((a, b) => a > b)}
           data={minBasePay}
           setData={setMinBasePay}
           placeholder="Min Base Pay"
