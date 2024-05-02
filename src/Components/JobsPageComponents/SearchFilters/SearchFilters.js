@@ -35,6 +35,10 @@ export default function SearchFilters() {
         jobRole: role,
         location: location,
         minExp: minExperience,
+        remoteOnSite: remoteOrNot,
+        techStack: techStack,
+        companyName: companyName,
+        minBasePay: minBasePay,
       })
     );
   }, [
