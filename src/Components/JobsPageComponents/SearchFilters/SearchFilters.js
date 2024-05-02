@@ -10,14 +10,9 @@ import { filterJobs } from "../../../Store/Slices/JobsDataSlice";
 
 export default function SearchFilters() {
   const dispatch = useDispatch();
-  const {
-    jobs,
-    // techStackData,
-    // minBasePaySalary,
-    remoteOrNotData,
-    // filterDataOptions,
-  } = useSelector((state) => state.JobsDataState);
+  const { jobs, remoteOrNotData } = useSelector((state) => state.JobsDataState);
 
+  // States to pass as props in select and search & select reusable component
   const [role, setRole] = useState("");
   const [minExperience, setMinExperience] = useState("");
   const [companyName, setCompanyName] = useState("");
@@ -26,6 +21,7 @@ export default function SearchFilters() {
   const [techStack, setTechStack] = useState("");
   const [minBasePay, setMinBasePay] = useState("");
 
+  // dispatching the filtered selection into filtetJobs state in redux store on state changes passed as dependencies
   React.useEffect(() => {
     dispatch(
       filterJobs({
@@ -58,6 +54,7 @@ export default function SearchFilters() {
       }}
     >
       <div className="JobSearchFilter">
+        {/* Passing the state, setState, actual data from jobs state to pass as options for dropdown, placeholder name as props */}
         <SearchAndSelectDropdown
           setState={setRole}
           state={role}

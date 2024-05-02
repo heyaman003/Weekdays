@@ -4,14 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import iconImage from "../../../Assets/icon.png";
 
 import * as React from "react";
-// import CircularProgress from "@mui/material/CircularProgress";
-// import Box from "@mui/material/Box";
 
-// import { useGetJobsMutation } from "../../../Store/APIServices/JobData";
-import {
-  // getAllJobs,
-  increaseLimitCount,
-} from "../../../Store/Slices/JobsDataSlice";
+import { increaseLimitCount } from "../../../Store/Slices/JobsDataSlice";
 
 export default function JobCards() {
   const dispatch = useDispatch();
@@ -19,35 +13,11 @@ export default function JobCards() {
     (state) => state.JobsDataState
   );
 
-  // console.log(jobs);
-
-  // const [getJobs, responseGetJobs] = useGetJobsMutation();
-
-  // React.useEffect(() => {
-  //   if (responseGetJobs.isSuccess) {
-  //     dispatch(getAllJobs(responseGetJobs?.currentData));
-  //   }
-  // }, [responseGetJobs.isSuccess]);
-
-  // const [dataToBeVisible, setDataToBeVisible] = React.useState([]);
-
-  // const fetchMoreDataWithScrolling = () => {
-  //   const newData = dataToBeVisible.length
-  //     ? [...dataToBeVisible, ...jobs?.jdList]
-  //     : jobs?.jdList;
-  //   setDataToBeVisible(newData);
-  // };
-
-  // React.useEffect(() => {
-  //   fetchMoreDataWithScrolling();
-  // }, []);
-
   const handleScroll = () => {
     if (
       window.innerHeight + document.documentElement.scrollTop ===
       document.documentElement.offsetHeight
     ) {
-      // fetchMoreDataWithScrolling();
       dispatch(increaseLimitCount(limitCount + 20));
     }
   };

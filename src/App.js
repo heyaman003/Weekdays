@@ -19,19 +19,17 @@ function App() {
   const dispatch = useDispatch();
   const [getJobs, responseGetJobs] = useGetJobsMutation();
 
-  const { limitCount } = useSelector((state) => state.JobsDataState);
-
-  React.useEffect(() => {});
+  const { limitCount } = useSelector((state) => state.JobsDataState); //limitCount state from jobsDataSlice
 
   React.useEffect(() => {
     getJobs(limitCount);
-  }, [limitCount]);
+  }, [limitCount]); //Send limit data initially 20 to api to get a response of 20 jdList data
 
   React.useEffect(() => {
     if (responseGetJobs.isSuccess) {
       dispatch(getAllJobs(responseGetJobs?.data));
     }
-  }, [responseGetJobs.isSuccess]);
+  }, [responseGetJobs.isSuccess]); //Storing the response from to jobs state in jobDataSlice
 
   return (
     <>
