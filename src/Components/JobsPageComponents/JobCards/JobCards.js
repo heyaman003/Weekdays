@@ -22,21 +22,18 @@ export default function JobCards() {
     }
   }, [responseGetJobs.isSuccess]);
 
-  const [visibleData, setVisibleData] = React.useState([]);
+  const [dataToBeVisible, setDataToBeVisible] = React.useState([]);
 
-  const fetchMoreData = () => {
-    // Simulate fetching more data
-    const newData = visibleData.length
-      ? [...visibleData, ...responseGetJobs?.currentData?.jdList]
+  const fetchMoreDataWithScrolling = () => {
+    const newData = dataToBeVisible.length
+      ? [...dataToBeVisible, ...responseGetJobs?.currentData?.jdList]
       : responseGetJobs?.currentData?.jdList?.slice(0, 9);
-    setVisibleData(newData);
+    setDataToBeVisible(newData);
   };
-
-  console.log(visibleData);
 
   React.useEffect(() => {
     if (responseGetJobs.isSuccess) {
-      fetchMoreData();
+      fetchMoreDataWithScrolling();
     }
   }, [responseGetJobs.isSuccess]);
 
@@ -45,25 +42,25 @@ export default function JobCards() {
       window.innerHeight + document.documentElement.scrollTop ===
       document.documentElement.offsetHeight
     ) {
-      fetchMoreData();
+      fetchMoreDataWithScrolling();
     }
   };
 
   React.useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [visibleData]);
+  }, [dataToBeVisible]);
 
-  const renderedJobCards = visibleData?.map((item, index) => {
+  const renderedJobCards = dataToBeVisible?.map((item, index) => {
     return (
-      <div className="jobcard" key={`${item?.jdUid} - ${index}`}>
-        <p className="jobcard-postedTime">Posted 12 days ago</p>
-        <div className="jobcard-companyDetails">
-          <img src={iconImage} alt="iconImage" />
-          <div className="jobcard-companyDetails-text">
-            <p className="jobcard-companyName">Company Name</p>
-            <p className="jobcard-JobName">{item?.jobRole.toUpperCase()}</p>
-            <p className="jobcard-JobLocation">
+      <div className='jobcard' key={`${item?.jdUid} - ${index}`}>
+        <p className='jobcard-postedTime'>Posted 12 days ago</p>
+        <div className='jobcard-companyDetails'>
+          <img src={iconImage} alt='iconImage' />
+          <div className='jobcard-companyDetails-text'>
+            <p className='jobcard-companyName'>Company Name</p>
+            <p className='jobcard-JobName'>{item?.jobRole.toUpperCase()}</p>
+            <p className='jobcard-JobLocation'>
               {item?.location.toUpperCase()}
             </p>
           </div>
@@ -71,24 +68,24 @@ export default function JobCards() {
         <p style={{ fontWeight: 400, color: "#8b8b8b" }}>
           Estimated Salary: ₹18 - 35 LPA
         </p>
-        <div className="jobcard-about">
-          <p className="jobcard-about-heading">About Company</p>
+        <div className='jobcard-about'>
+          <p className='jobcard-about-heading'>About Company</p>
           <p>{item?.jobDetailsFromCompany}</p>
-          <div className="jobcard-about-ViewJob">View Job</div>
+          <div className='jobcard-about-ViewJob'>View Job</div>
         </div>
-        <div className="">
+        <div className=''>
           <p style={{ fontWeight: "600", lineHeight: "4px" }}>
             Minimum Experience
           </p>
           <p>2 years</p>
         </div>
-        <button className="jobcard-button">Easy Apply</button>
+        <button className='jobcard-button'>Easy Apply</button>
       </div>
     );
   });
 
   return (
-    <div className="jobCards">
+    <div className='jobCards'>
       {responseGetJobs.isLoading ? (
         <Box
           sx={{
@@ -97,8 +94,7 @@ export default function JobCards() {
             height: "100vh",
             justifyContent: "center",
             alignItems: "center",
-          }}
-        >
+          }}>
           <CircularProgress />
         </Box>
       ) : (

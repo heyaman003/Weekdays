@@ -12,8 +12,8 @@ export default function SearchFilters() {
     techStackData,
     minBasePaySalary,
     remoteOrNotData,
-    minExperienceData,
-    companyNameData,
+
+    filterDataOptions,
   } = useSelector((state) => state.JobsDataState);
 
   // console.log(jobs?.jdList);
@@ -26,7 +26,7 @@ export default function SearchFilters() {
   const [techStack, setTechStack] = useState("");
   const [minBasePay, setMinBasePay] = useState("");
 
-  console.log(minExperience);
+  console.log(filterDataOptions);
 
   return (
     <div className='JobSearchFilter'>

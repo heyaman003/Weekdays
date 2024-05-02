@@ -20,7 +20,6 @@ export default function SelectComponent({
   const dataWithoutNullValues = dataWithoutDuplicates?.filter(
     (item, index) => item !== null
   );
-  console.log(dataWithoutNullValues);
 
   // console.log(dataWithoutDuplicates);
 
@@ -38,15 +37,15 @@ export default function SelectComponent({
           value={data}
           label={placeholder}
           onChange={handleChange}>
-          {options[0] !== undefined &&
+          {options && options?.some((item) => item === undefined) ? (
             dataWithoutNullValues.map((item, index) => {
               return (
                 <MenuItem value={item} key={index}>
                   {item}
                 </MenuItem>
               );
-            })}
-          {options[0] === undefined && (
+            })
+          ) : (
             <MenuItem value={"No Data"} disabled>
               No Data
             </MenuItem>
