@@ -15,3 +15,4 @@ In the project directory, you can run:
 9. In Infinite Scrolling, I am dispatching the increaseLimitCount by getting the current limitCount value and incrementing it with 20 on every scroll and limit count state is initially a dependency when I am peforming post operation and getting a response with incremental value every time
 10. THIS ASSIGNMENT IS WORKING CORRECTLY ON MOZILLA FIREFOX in my experience as I got limited time for testing and fixing but I have tried my best to meet up with the expectation.
 11. It is MOBILE and TABLET RESPONSIVE as well.
+12. It has Reset button to reset the filters (Additional)
