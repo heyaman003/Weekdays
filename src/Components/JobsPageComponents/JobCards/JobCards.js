@@ -25,6 +25,9 @@ export default function JobCards() {
     if (filterDataOptions?.location === item?.location) {
       return item;
     }
+    if (filterDataOptions?.companyName === item?.companyName) {
+      return item;
+    }
     if (filterDataOptions?.minExp === item?.minExp) {
       return item;
     }
@@ -32,6 +35,12 @@ export default function JobCards() {
       if (item?.location === "remote") {
         return item;
       }
+    }
+    if (filterDataOptions?.techStack === item?.techStack) {
+      return item;
+    }
+    if (filterDataOptions?.minBasePay === item?.minBasePay) {
+      return item;
     }
   });
 
