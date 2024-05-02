@@ -37,7 +37,7 @@ export default function SelectComponent({
           value={data}
           label={placeholder}
           onChange={handleChange}>
-          {options && options?.some((item) => item === undefined) ? (
+          {options && options?.some((item) => item !== undefined) ? (
             dataWithoutNullValues.map((item, index) => {
               return (
                 <MenuItem value={item} key={index}>
