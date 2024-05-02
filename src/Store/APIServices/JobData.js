@@ -15,6 +15,10 @@ export const JobDataService = createApi({
           headers: {
             "Content-Type": "application/json",
           },
+          body: JSON.stringify({
+            limit: 10,
+            offset: 0,
+          }),
         };
       },
     }),

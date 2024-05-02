@@ -97,7 +97,9 @@ export default function SearchFilters() {
           placeholder="Tech Stack"
         />
         <SelectComponent
-          options={jobs?.jdList?.map((data) => data.minJdSalary)}
+          options={jobs?.jdList?.map(
+            (data) => data.minJdSalary !== null && data.minJdSalary
+          )}
           data={minBasePay}
           setData={setMinBasePay}
           placeholder="Min Base Pay"
