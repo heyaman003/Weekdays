@@ -13,22 +13,29 @@ export default function SelectComponent({
 }) {
   //   const [data, setData] = React.useState("");
 
+  const dataWithoutDuplicates = options?.filter(
+    (item, index) => options?.indexOf(item) === index
+  );
+
+  // const dataWithoutNullValues = dataWithoutDuplicates?.filter((item, index) => )
+
+  // console.log(dataWithoutDuplicates);
+
   const handleChange = (event) => {
     setData(event.target.value);
   };
   return (
     <Box sx={{ width: "100%" }}>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">{placeholder}</InputLabel>
+        <InputLabel id='demo-simple-select-label'>{placeholder}</InputLabel>
         <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
+          labelId='demo-simple-select-label'
+          id='demo-simple-select'
           value={data}
           label={placeholder}
-          onChange={handleChange}
-        >
+          onChange={handleChange}>
           {options
-            ? options.map((item, index) => {
+            ? dataWithoutDuplicates.map((item, index) => {
                 return (
                   <MenuItem value={item} key={index}>
                     {item}

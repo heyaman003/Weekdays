@@ -23,6 +23,16 @@ const initialState = {
   remoteOrNotData: ["Remote", "Hybrid", "In-Office"],
   minBasePaySalary: ["0L", "10L", "20L", "30L", "40L", "50L", "60L", "70L"],
   minExperienceData: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+  companyNameData: ["Company 1", "Company 2", "Company 3", "Company 4"],
+  filterDataOptions: {
+    jobRole: "",
+    location: "",
+    minExp: "",
+    remoteOnSite: "",
+    techStack: "",
+    companyName: "",
+    minBasePay: "",
+  },
 };
 
 const jobsDataSlice = createSlice({

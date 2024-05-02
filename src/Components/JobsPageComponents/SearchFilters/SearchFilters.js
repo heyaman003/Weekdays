@@ -13,10 +13,12 @@ export default function SearchFilters() {
     minBasePaySalary,
     remoteOrNotData,
     minExperienceData,
+    companyNameData,
   } = useSelector((state) => state.JobsDataState);
 
   // console.log(jobs?.jdList);
 
+  const [role, setRole] = useState("");
   const [minExperience, setMinExperience] = useState("");
   const [companyName, setCompanyName] = useState("");
   const [location, setLocation] = useState("");
@@ -24,45 +26,50 @@ export default function SearchFilters() {
   const [techStack, setTechStack] = useState("");
   const [minBasePay, setMinBasePay] = useState("");
 
+  console.log(minExperience);
+
   return (
-    <div className="JobSearchFilter">
+    <div className='JobSearchFilter'>
       <SearchAndSelectDropdown
+        setState={setRole}
         data={jobs?.jdList?.map((data) => data.jobRole.toUpperCase())}
-        placeholder="Role"
+        placeholder='Role'
       />
       <SelectComponent
-        options={minExperienceData}
+        options={jobs?.jdList?.map((data) => data.minExp)}
         data={minExperience}
         setData={setMinExperience}
-        placeholder="Min Experience"
+        placeholder='Min Experience'
       />
       <SelectComponent
-        // data={jobs?.jdList?.map((data) => data.companyName.toUpperCase())}
-        placeholder="Company Name"
+        options={companyNameData}
+        data={companyName}
+        setData={setCompanyName}
+        placeholder='Company Name'
       />
       <SelectComponent
         options={jobs?.jdList?.map((data) => data.location.toUpperCase())}
         data={location}
         setData={setLocation}
-        placeholder="Location"
+        placeholder='Location'
       />
       <SelectComponent
         options={remoteOrNotData}
         data={remoteOrNot}
         setData={setRemoteOrNot}
-        placeholder="Remote/on-site"
+        placeholder='Remote/on-site'
       />
       <SelectComponent
         options={techStackData.map((data) => data.toUpperCase())}
         data={techStack}
         setData={setTechStack}
-        placeholder="Tech Stack"
+        placeholder='Tech Stack'
       />
       <SelectComponent
         options={minBasePaySalary.map((data) => data.toUpperCase())}
         data={minBasePay}
         setData={setMinBasePay}
-        placeholder="Min Base Pay"
+        placeholder='Min Base Pay'
       />
     </div>
   );
