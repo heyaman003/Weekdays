@@ -78,7 +78,7 @@ export default function JobCards() {
     if (filterDataOptions?.techStack === item?.techStack) {
       return item;
     }
-    if (filterDataOptions?.minBasePay === item?.minBasePay) {
+    if (filterDataOptions?.minBasePay === item?.minJdSalary) {
       return item;
     } else {
       return false;
@@ -87,14 +87,14 @@ export default function JobCards() {
 
   const renderedJobCards = filteredData?.map((item, index) => {
     return (
-      <div className='jobcard' key={`${item?.jdUid} - ${index}`}>
-        <p className='jobcard-postedTime'>Posted 12 days ago</p>
-        <div className='jobcard-companyDetails'>
-          <img src={iconImage} alt='iconImage' />
-          <div className='jobcard-companyDetails-text'>
-            <p className='jobcard-companyName'>Company Name</p>
-            <p className='jobcard-JobName'>{item?.jobRole.toUpperCase()}</p>
-            <p className='jobcard-JobLocation'>
+      <div className="jobcard" key={`${item?.jdUid} - ${index}`}>
+        <p className="jobcard-postedTime">Posted 12 days ago</p>
+        <div className="jobcard-companyDetails">
+          <img src={iconImage} alt="iconImage" />
+          <div className="jobcard-companyDetails-text">
+            <p className="jobcard-companyName">Company Name</p>
+            <p className="jobcard-JobName">{item?.jobRole.toUpperCase()}</p>
+            <p className="jobcard-JobLocation">
               {item?.location.toUpperCase()}
             </p>
           </div>
@@ -102,32 +102,32 @@ export default function JobCards() {
         <p style={{ fontWeight: 400, color: "#8b8b8b" }}>
           Estimated Salary: ₹18 - 35 LPA
         </p>
-        <div className='jobcard-about'>
-          <p className='jobcard-about-heading'>About Company</p>
+        <div className="jobcard-about">
+          <p className="jobcard-about-heading">About Company</p>
           <p>{item?.jobDetailsFromCompany}</p>
-          <div className='jobcard-about-ViewJob'>View Job</div>
+          <div className="jobcard-about-ViewJob">View Job</div>
         </div>
-        <div className=''>
+        <div className="">
           <p style={{ fontWeight: "600", lineHeight: "4px" }}>
             Minimum Experience
           </p>
           {/* <p>2 years</p> */}
         </div>
-        <button className='jobcard-button'>Easy Apply</button>
+        <button className="jobcard-button">Easy Apply</button>
       </div>
     );
   });
 
   const renderedJobCardsUnfiltered = dataToBeVisible?.map((item, index) => {
     return (
-      <div className='jobcard' key={`${item?.jdUid} - ${index}`}>
-        <p className='jobcard-postedTime'>Posted 12 days ago</p>
-        <div className='jobcard-companyDetails'>
-          <img src={iconImage} alt='iconImage' />
-          <div className='jobcard-companyDetails-text'>
-            <p className='jobcard-companyName'>Company Name</p>
-            <p className='jobcard-JobName'>{item?.jobRole.toUpperCase()}</p>
-            <p className='jobcard-JobLocation'>
+      <div className="jobcard" key={`${item?.jdUid} - ${index}`}>
+        <p className="jobcard-postedTime">Posted 12 days ago</p>
+        <div className="jobcard-companyDetails">
+          <img src={iconImage} alt="iconImage" />
+          <div className="jobcard-companyDetails-text">
+            <p className="jobcard-companyName">Company Name</p>
+            <p className="jobcard-JobName">{item?.jobRole.toUpperCase()}</p>
+            <p className="jobcard-JobLocation">
               {item?.location.toUpperCase()}
             </p>
           </div>
@@ -135,18 +135,18 @@ export default function JobCards() {
         <p style={{ fontWeight: 400, color: "#8b8b8b" }}>
           Estimated Salary: ₹18 - 35 LPA
         </p>
-        <div className='jobcard-about'>
-          <p className='jobcard-about-heading'>About Company</p>
+        <div className="jobcard-about">
+          <p className="jobcard-about-heading">About Company</p>
           <p>{item?.jobDetailsFromCompany}</p>
-          <div className='jobcard-about-ViewJob'>View Job</div>
+          <div className="jobcard-about-ViewJob">View Job</div>
         </div>
-        <div className=''>
+        <div className="">
           <p style={{ fontWeight: "600", lineHeight: "4px" }}>
             Minimum Experience
           </p>
           <p>2 years</p>
         </div>
-        <button className='jobcard-button'>Easy Apply</button>
+        <button className="jobcard-button">Easy Apply</button>
       </div>
     );
   });
@@ -154,7 +154,7 @@ export default function JobCards() {
   console.log(filteredData);
 
   return (
-    <div className='jobCards'>
+    <div className="jobCards">
       {responseGetJobs.isLoading ? (
         <Box
           sx={{
@@ -163,7 +163,8 @@ export default function JobCards() {
             height: "100vh",
             justifyContent: "center",
             alignItems: "center",
-          }}>
+          }}
+        >
           <CircularProgress />
         </Box>
       ) : (

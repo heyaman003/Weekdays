@@ -12,8 +12,8 @@ export default function SearchFilters() {
   const dispatch = useDispatch();
   const {
     jobs,
-    techStackData,
-    minBasePaySalary,
+    // techStackData,
+    // minBasePaySalary,
     remoteOrNotData,
     filterDataOptions,
   } = useSelector((state) => state.JobsDataState);
@@ -27,6 +27,70 @@ export default function SearchFilters() {
   const [minBasePay, setMinBasePay] = useState("");
 
   React.useEffect(() => {
+    if (role !== "") {
+      setMinExperience("");
+      setCompanyName("");
+      setLocation("");
+
+      setRemoteOrNot("");
+      setTechStack("");
+      setMinBasePay("");
+    }
+    if (minExperience !== "") {
+      setRole("");
+      setCompanyName("");
+      setLocation("");
+
+      setRemoteOrNot("");
+      setTechStack("");
+      setMinBasePay("");
+    }
+    if (companyName !== "") {
+      setMinExperience("");
+      setRole("");
+      setLocation("");
+
+      setRemoteOrNot("");
+      setTechStack("");
+      setMinBasePay("");
+    }
+    if (location !== "") {
+      setMinExperience("");
+      setCompanyName("");
+      setRole("");
+
+      setRemoteOrNot("");
+      setTechStack("");
+      setMinBasePay("");
+    }
+    if (remoteOrNot !== "") {
+      setMinExperience("");
+      setCompanyName("");
+      setLocation("");
+
+      setRole("");
+      setTechStack("");
+      setMinBasePay("");
+    }
+    if (techStack !== "") {
+      setMinExperience("");
+      setCompanyName("");
+      setLocation("");
+
+      setRemoteOrNot("");
+      setRole("");
+      setMinBasePay("");
+    }
+    if (minBasePay !== "") {
+      setMinExperience("");
+      setCompanyName("");
+      setLocation("");
+
+      setRemoteOrNot("");
+      setTechStack("");
+      setRole("");
+    }
+
     dispatch(
       filterJobs({
         jobRole: role,
@@ -49,47 +113,47 @@ export default function SearchFilters() {
   ]);
 
   return (
-    <div className='JobSearchFilter'>
+    <div className="JobSearchFilter">
       <SearchAndSelectDropdown
         setState={setRole}
         data={jobs?.jdList?.map((data) => data.jobRole)}
-        placeholder='Role'
+        placeholder="Role"
       />
       <SelectComponent
         options={jobs?.jdList?.map((data) => data.minExp).sort((a, b) => a > b)}
         data={minExperience}
         setData={setMinExperience}
-        placeholder='Min Experience'
+        placeholder="Min Experience"
       />
       <SelectComponent
         options={jobs?.jdList?.map((data) => data.companyName)}
         data={companyName}
         setData={setCompanyName}
-        placeholder='Company Name'
+        placeholder="Company Name"
       />
       <SelectComponent
         options={jobs?.jdList?.map((data) => data.location)}
         data={location}
         setData={setLocation}
-        placeholder='Location'
+        placeholder="Location"
       />
       <SelectComponent
         options={remoteOrNotData}
         data={remoteOrNot}
         setData={setRemoteOrNot}
-        placeholder='Remote/on-site'
+        placeholder="Remote/on-site"
       />
       <SelectComponent
         options={jobs?.jdList?.map((data) => data.techStack)}
         data={techStack}
         setData={setTechStack}
-        placeholder='Tech Stack'
+        placeholder="Tech Stack"
       />
       <SelectComponent
         options={jobs?.jdList?.map((data) => data.minJdSalary)}
         data={minBasePay}
         setData={setMinBasePay}
-        placeholder='Min Base Pay'
+        placeholder="Min Base Pay"
       />
     </div>
   );
