@@ -18,34 +18,6 @@ export default function JobCards() {
 
   const responseGetJobs = useGetJobsQuery();
 
-  const filteredData = jobs?.jdList?.filter((item, index) => {
-    if (filterDataOptions?.jobRole?.includes(item?.jobRole)) {
-      return item;
-    }
-    if (filterDataOptions?.location === item?.location) {
-      return item;
-    }
-    if (filterDataOptions?.companyName === item?.companyName) {
-      return item;
-    }
-    if (filterDataOptions?.minExp === item?.minExp) {
-      return item;
-    }
-    if (filterDataOptions?.remoteOnSite === "Remote") {
-      if (item?.location === "remote") {
-        return item;
-      }
-    }
-    if (filterDataOptions?.techStack === item?.techStack) {
-      return item;
-    }
-    if (filterDataOptions?.minBasePay === item?.minBasePay) {
-      return item;
-    }
-  });
-
-  console.log(filteredData);
-
   React.useEffect(() => {
     if (responseGetJobs.isSuccess) {
       dispatch(getAllJobs(responseGetJobs?.currentData));
@@ -81,7 +53,33 @@ export default function JobCards() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [dataToBeVisible]);
 
-  const renderedJobCards = dataToBeVisible?.map((item, index) => {
+  const filteredData = dataToBeVisible?.filter((item, index) => {
+    if (filterDataOptions?.jobRole?.includes(item?.jobRole)) {
+      return item;
+    }
+    if (filterDataOptions?.location === item?.location) {
+      return item;
+    }
+    if (filterDataOptions?.companyName === item?.companyName) {
+      return item;
+    }
+    if (filterDataOptions?.minExp === item?.minExp) {
+      return item;
+    }
+    if (filterDataOptions?.remoteOnSite === "Remote") {
+      if (item?.location === "remote") {
+        return item;
+      }
+    }
+    if (filterDataOptions?.techStack === item?.techStack) {
+      return item;
+    }
+    if (filterDataOptions?.minBasePay === item?.minBasePay) {
+      return item;
+    }
+  });
+
+  const renderedJobCards = filteredData?.map((item, index) => {
     return (
       <div className='jobcard' key={`${item?.jdUid} - ${index}`}>
         <p className='jobcard-postedTime'>Posted 12 days ago</p>
@@ -114,6 +112,41 @@ export default function JobCards() {
     );
   });
 
+  const renderedJobCardsUnfiltered = dataToBeVisible?.map((item, index) => {
+    return (
+      <div className='jobcard' key={`${item?.jdUid} - ${index}`}>
+        <p className='jobcard-postedTime'>Posted 12 days ago</p>
+        <div className='jobcard-companyDetails'>
+          <img src={iconImage} alt='iconImage' />
+          <div className='jobcard-companyDetails-text'>
+            <p className='jobcard-companyName'>Company Name</p>
+            <p className='jobcard-JobName'>{item?.jobRole.toUpperCase()}</p>
+            <p className='jobcard-JobLocation'>
+              {item?.location.toUpperCase()}
+            </p>
+          </div>
+        </div>
+        <p style={{ fontWeight: 400, color: "#8b8b8b" }}>
+          Estimated Salary: ₹18 - 35 LPA
+        </p>
+        <div className='jobcard-about'>
+          <p className='jobcard-about-heading'>About Company</p>
+          <p>{item?.jobDetailsFromCompany}</p>
+          <div className='jobcard-about-ViewJob'>View Job</div>
+        </div>
+        <div className=''>
+          <p style={{ fontWeight: "600", lineHeight: "4px" }}>
+            Minimum Experience
+          </p>
+          <p>2 years</p>
+        </div>
+        <button className='jobcard-button'>Easy Apply</button>
+      </div>
+    );
+  });
+
+  console.log(filteredData);
+
   return (
     <div className='jobCards'>
       {responseGetJobs.isLoading ? (
@@ -128,7 +161,11 @@ export default function JobCards() {
           <CircularProgress />
         </Box>
       ) : (
-        renderedJobCards
+        <>
+          {filteredData?.length === 0
+            ? renderedJobCardsUnfiltered
+            : renderedJobCards}
+        </>
       )}
     </div>
   );
