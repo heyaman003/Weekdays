@@ -27,7 +27,7 @@ export default function JobCards() {
   const fetchMoreDataWithScrolling = () => {
     const newData = dataToBeVisible.length
       ? [...dataToBeVisible, ...responseGetJobs?.currentData?.jdList]
-      : responseGetJobs?.currentData?.jdList?.slice(0, 9);
+      : responseGetJobs?.currentData?.jdList?.slice(0, 5);
     setDataToBeVisible(newData);
   };
 
