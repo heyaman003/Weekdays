@@ -60,6 +60,7 @@ export default function SearchFilters() {
       <div className="JobSearchFilter">
         <SearchAndSelectDropdown
           setState={setRole}
+          state={role}
           data={jobs?.jdList?.map((data) => data.jobRole)}
           placeholder="Role"
         />

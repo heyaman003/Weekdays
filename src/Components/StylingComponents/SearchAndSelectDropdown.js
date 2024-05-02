@@ -6,7 +6,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 export default function SearchAndSelectDropdown({
   data,
   placeholder,
-
+  state,
   setState,
 }) {
   // console.log(data);
@@ -20,10 +20,17 @@ export default function SearchAndSelectDropdown({
   React.useEffect(() => {
     setState(value);
   }, [value]);
+
+  React.useEffect(() => {
+    if (state === "") {
+      setValue([...fixedOptions]);
+    }
+  }, [state]);
+
   return (
     <Autocomplete
       multiple
-      id='fixed-tags-demo'
+      id="fixed-tags-demo"
       value={value}
       onChange={(event, newValue) => {
         setValue([
