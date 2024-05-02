@@ -12,9 +12,30 @@ import { getAllJobs } from "../../../Store/Slices/JobsDataSlice";
 
 export default function JobCards() {
   const dispatch = useDispatch();
-  const { jobs } = useSelector((state) => state.JobsDataState);
+  const { jobs, filterDataOptions } = useSelector(
+    (state) => state.JobsDataState
+  );
 
   const responseGetJobs = useGetJobsQuery();
+
+  const filteredData = jobs?.jdList?.filter((item, index) => {
+    if (filterDataOptions?.jobRole?.includes(item?.jobRole)) {
+      return item;
+    }
+    if (filterDataOptions?.location === item?.location) {
+      return item;
+    }
+    if (filterDataOptions?.minExp === item?.minExp) {
+      return item;
+    }
+    if (filterDataOptions?.remoteOnSite === "Remote") {
+      if (item?.location === "remote") {
+        return item;
+      }
+    }
+  });
+
+  console.log(filteredData);
 
   React.useEffect(() => {
     if (responseGetJobs.isSuccess) {

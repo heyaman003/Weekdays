@@ -19,7 +19,7 @@ export default function SearchFilters() {
     filterDataOptions,
   } = useSelector((state) => state.JobsDataState);
 
-  // console.log(jobs?.jdList);
+  console.log(filterDataOptions);
 
   const [role, setRole] = useState("");
   const [minExperience, setMinExperience] = useState("");
@@ -55,7 +55,7 @@ export default function SearchFilters() {
     <div className='JobSearchFilter'>
       <SearchAndSelectDropdown
         setState={setRole}
-        data={jobs?.jdList?.map((data) => data.jobRole.toUpperCase())}
+        data={jobs?.jdList?.map((data) => data.jobRole)}
         placeholder='Role'
       />
       <SelectComponent
@@ -71,7 +71,7 @@ export default function SearchFilters() {
         placeholder='Company Name'
       />
       <SelectComponent
-        options={jobs?.jdList?.map((data) => data.location.toUpperCase())}
+        options={jobs?.jdList?.map((data) => data.location)}
         data={location}
         setData={setLocation}
         placeholder='Location'
@@ -83,13 +83,13 @@ export default function SearchFilters() {
         placeholder='Remote/on-site'
       />
       <SelectComponent
-        options={techStackData.map((data) => data.toUpperCase())}
+        options={techStackData.map((data) => data)}
         data={techStack}
         setData={setTechStack}
         placeholder='Tech Stack'
       />
       <SelectComponent
-        options={minBasePaySalary.map((data) => data.toUpperCase())}
+        options={minBasePaySalary.map((data) => data)}
         data={minBasePay}
         setData={setMinBasePay}
         placeholder='Min Base Pay'
