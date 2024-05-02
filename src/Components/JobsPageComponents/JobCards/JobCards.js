@@ -22,6 +22,9 @@ export default function JobCards() {
     }
   };
 
+  // Getting Id for job description expansion
+  const [id, setId] = React.useState("");
+
   React.useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -76,17 +79,31 @@ export default function JobCards() {
         <p style={{ fontWeight: 400, color: "#8b8b8b" }}>
           Estimated Salary: ₹18 - 35 LPA
         </p>
-        <div className="jobcard-about">
-          <p className="jobcard-about-heading">About Company</p>
-          <p>{item?.jobDetailsFromCompany}</p>
-          <div className="jobcard-about-ViewJob">View Job</div>
-        </div>
-        <div className="">
-          <p style={{ fontWeight: "600", lineHeight: "4px" }}>
-            Minimum Experience
-          </p>
-          {/* <p>2 years</p> */}
-        </div>
+        {id === item.jdUid ? (
+          <div className="jobcard-about">
+            <p className="jobcard-about-heading">About Company</p>
+            <p>{item?.jobDetailsFromCompany}</p>
+          </div>
+        ) : (
+          <div className="jobcard-about">
+            <p className="jobcard-about-heading">About Company</p>
+            <p>{item?.jobDetailsFromCompany.substr(0, 150)}</p>
+            <div
+              className="jobcard-about-ViewJob"
+              onClick={() => setId(item.jdUid)}
+            >
+              Expand
+            </div>
+          </div>
+        )}
+        {item.minExp && (
+          <div className="">
+            <p style={{ fontWeight: "600", lineHeight: "4px" }}>
+              Minimum Experience
+            </p>
+            <p>{item.minExp} Years</p>
+          </div>
+        )}
         <button className="jobcard-button">Easy Apply</button>
       </div>
     );
@@ -109,17 +126,38 @@ export default function JobCards() {
         <p style={{ fontWeight: 400, color: "#8b8b8b" }}>
           Estimated Salary: ₹18 - 35 LPA
         </p>
-        <div className="jobcard-about">
-          <p className="jobcard-about-heading">About Company</p>
-          <p>{item?.jobDetailsFromCompany}</p>
-          <div className="jobcard-about-ViewJob">View Job</div>
-        </div>
-        <div className="">
-          <p style={{ fontWeight: "600", lineHeight: "4px" }}>
-            Minimum Experience
-          </p>
-          <p>2 years</p>
-        </div>
+        {id === item.jdUid ? (
+          <div className="jobcard-about">
+            <p className="jobcard-about-heading">About Company</p>
+            <p>{item?.jobDetailsFromCompany}</p>
+          </div>
+        ) : (
+          <div className="jobcard-about">
+            <p className="jobcard-about-heading">About Company</p>
+            <p>{item?.jobDetailsFromCompany.substr(0, 150)}</p>
+            <div
+              className="jobcard-about-ViewJob"
+              onClick={() => setId(item.jdUid)}
+            >
+              Expand
+            </div>
+          </div>
+        )}
+        {item.minExp ? (
+          <div className="">
+            <p style={{ fontWeight: "600", lineHeight: "4px" }}>
+              Minimum Experience
+            </p>
+            <p>{item.minExp} Years</p>
+          </div>
+        ) : (
+          <div className="">
+            <p style={{ fontWeight: "600", lineHeight: "4px" }}>
+              Minimum Experience
+            </p>
+            <p>0 Years</p>
+          </div>
+        )}
         <button className="jobcard-button">Easy Apply</button>
       </div>
     );
