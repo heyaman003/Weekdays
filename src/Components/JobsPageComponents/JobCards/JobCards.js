@@ -71,6 +71,16 @@ export default function JobCards() {
         return item;
       }
     }
+    if (filterDataOptions?.remoteOnSite === "Hybrid") {
+      if (item?.location === "hybrid") {
+        return item;
+      }
+    }
+    if (filterDataOptions?.remoteOnSite === "In-Office") {
+      if (item?.location !== "hybrid" || item?.location !== "remote") {
+        return item;
+      }
+    }
     if (filterDataOptions?.techStack === item?.techStack) {
       return item;
     }
