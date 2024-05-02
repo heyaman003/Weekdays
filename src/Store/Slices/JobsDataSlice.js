@@ -42,8 +42,11 @@ const jobsDataSlice = createSlice({
     getAllJobs: (state, action) => {
       state.jobs = action.payload;
     },
+    filterJobs: (state, action) => {
+      state.filterDataOptions = action.payload;
+    },
   },
 });
 
-export const { getAllJobs } = jobsDataSlice.actions;
+export const { getAllJobs, filterJobs } = jobsDataSlice.actions;
 export default jobsDataSlice.reducer;

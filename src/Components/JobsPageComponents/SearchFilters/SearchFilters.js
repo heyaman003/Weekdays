@@ -6,7 +6,10 @@ import SelectComponent from "../../StylingComponents/SelectComponent";
 
 import { useSelector, useDispatch } from "react-redux";
 
+import { filterJobs } from "../../../Store/Slices/JobsDataSlice";
+
 export default function SearchFilters() {
+  const dispatch = useDispatch();
   const {
     jobs,
     techStackData,
@@ -26,7 +29,23 @@ export default function SearchFilters() {
   const [techStack, setTechStack] = useState("");
   const [minBasePay, setMinBasePay] = useState("");
 
-  console.log(filterDataOptions);
+  React.useEffect(() => {
+    dispatch(
+      filterJobs({
+        jobRole: role,
+        location: location,
+        minExp: minExperience,
+      })
+    );
+  }, [
+    role,
+    minExperience,
+    companyName,
+    location,
+    remoteOrNot,
+    techStack,
+    minBasePay,
+  ]);
 
   return (
     <div className='JobSearchFilter'>
