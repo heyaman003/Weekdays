@@ -15,11 +15,8 @@ export default function SearchFilters() {
     techStackData,
     minBasePaySalary,
     remoteOrNotData,
-
     filterDataOptions,
   } = useSelector((state) => state.JobsDataState);
-
-  console.log(filterDataOptions);
 
   const [role, setRole] = useState("");
   const [minExperience, setMinExperience] = useState("");
@@ -83,13 +80,13 @@ export default function SearchFilters() {
         placeholder='Remote/on-site'
       />
       <SelectComponent
-        options={techStackData.map((data) => data)}
+        options={jobs?.jdList?.map((data) => data.techStack)}
         data={techStack}
         setData={setTechStack}
         placeholder='Tech Stack'
       />
       <SelectComponent
-        options={minBasePaySalary.map((data) => data)}
+        options={jobs?.jdList?.map((data) => data.minJdSalary)}
         data={minBasePay}
         setData={setMinBasePay}
         placeholder='Min Base Pay'

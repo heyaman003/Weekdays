@@ -67,25 +67,21 @@ export default function JobCards() {
       return item;
     }
     if (filterDataOptions?.remoteOnSite === "Remote") {
-      if (item?.location === "remote") {
-        return item;
-      }
+      return item?.location === "remote";
     }
     if (filterDataOptions?.remoteOnSite === "Hybrid") {
-      if (item?.location === "hybrid") {
-        return item;
-      }
+      return item?.location === "hybrid";
     }
     if (filterDataOptions?.remoteOnSite === "In-Office") {
-      if (item?.location !== "hybrid" || item?.location !== "remote") {
-        return item;
-      }
+      return item?.location !== "remote";
     }
     if (filterDataOptions?.techStack === item?.techStack) {
       return item;
     }
     if (filterDataOptions?.minBasePay === item?.minBasePay) {
       return item;
+    } else {
+      return false;
     }
   });
 
@@ -115,7 +111,7 @@ export default function JobCards() {
           <p style={{ fontWeight: "600", lineHeight: "4px" }}>
             Minimum Experience
           </p>
-          <p>2 years</p>
+          {/* <p>2 years</p> */}
         </div>
         <button className='jobcard-button'>Easy Apply</button>
       </div>
