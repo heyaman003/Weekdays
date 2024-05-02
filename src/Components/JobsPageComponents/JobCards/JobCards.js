@@ -12,9 +12,7 @@ import { getAllJobs } from "../../../Store/Slices/JobsDataSlice";
 
 export default function JobCards() {
   const dispatch = useDispatch();
-  const { jobs, filterDataOptions } = useSelector(
-    (state) => state.JobsDataState
-  );
+  const { filterDataOptions } = useSelector((state) => state.JobsDataState);
 
   const responseGetJobs = useGetJobsQuery();
 
