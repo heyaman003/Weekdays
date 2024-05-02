@@ -27,6 +27,7 @@ export default function SelectComponent({
   const handleChange = (event) => {
     setData(event.target.value);
   };
+
   return (
     <Box sx={{ width: "100%" }}>
       <FormControl fullWidth>
@@ -37,15 +38,19 @@ export default function SelectComponent({
           value={data}
           label={placeholder}
           onChange={handleChange}>
-          {options
-            ? dataWithoutNullValues.map((item, index) => {
-                return (
-                  <MenuItem value={item} key={index}>
-                    {item}
-                  </MenuItem>
-                );
-              })
-            : []}
+          {options[0] !== undefined &&
+            dataWithoutNullValues.map((item, index) => {
+              return (
+                <MenuItem value={item} key={index}>
+                  {item}
+                </MenuItem>
+              );
+            })}
+          {options[0] === undefined && (
+            <MenuItem value={"No Data"} disabled>
+              No Data
+            </MenuItem>
+          )}
         </Select>
       </FormControl>
     </Box>

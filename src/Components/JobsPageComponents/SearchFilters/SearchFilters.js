@@ -36,13 +36,13 @@ export default function SearchFilters() {
         placeholder='Role'
       />
       <SelectComponent
-        options={jobs?.jdList?.map((data) => data.minExp)}
+        options={jobs?.jdList?.map((data) => data.minExp).sort((a, b) => a > b)}
         data={minExperience}
         setData={setMinExperience}
         placeholder='Min Experience'
       />
       <SelectComponent
-        options={companyNameData}
+        options={jobs?.jdList?.map((data) => data.companyName)}
         data={companyName}
         setData={setCompanyName}
         placeholder='Company Name'
