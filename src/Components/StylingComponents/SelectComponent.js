@@ -17,7 +17,10 @@ export default function SelectComponent({
     (item, index) => options?.indexOf(item) === index
   );
 
-  // const dataWithoutNullValues = dataWithoutDuplicates?.filter((item, index) => )
+  const dataWithoutNullValues = dataWithoutDuplicates?.filter(
+    (item, index) => item !== null
+  );
+  console.log(dataWithoutNullValues);
 
   // console.log(dataWithoutDuplicates);
 
@@ -35,7 +38,7 @@ export default function SelectComponent({
           label={placeholder}
           onChange={handleChange}>
           {options
-            ? dataWithoutDuplicates.map((item, index) => {
+            ? dataWithoutNullValues.map((item, index) => {
                 return (
                   <MenuItem value={item} key={index}>
                     {item}
