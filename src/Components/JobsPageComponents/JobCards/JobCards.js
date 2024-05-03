@@ -65,7 +65,7 @@ export default function JobCards() {
   const renderedJobCards = filteredData?.map((item, index) => {
     return (
       <div className="jobcard" key={`${item?.jdUid} - ${index}`}>
-        <p className="jobcard-postedTime">Posted 12 days ago</p>
+        <p className="jobcard-postedTime"> 5 days ago</p>
         <div className="jobcard-companyDetails">
           <img src={iconImage} alt="iconImage" />
           <div className="jobcard-companyDetails-text">
@@ -92,7 +92,7 @@ export default function JobCards() {
               className="jobcard-about-ViewJob"
               onClick={() => setId(item.jdUid)}
             >
-              Expand
+              Read more..
             </div>
           </div>
         )}
@@ -112,7 +112,7 @@ export default function JobCards() {
   const renderedJobCardsUnfiltered = jobs?.jdList?.map((item, index) => {
     return (
       <div className="jobcard" key={`${item?.jdUid} - ${index}`}>
-        <p className="jobcard-postedTime">Posted 12 days ago</p>
+        <p className="jobcard-postedTime">5 days ago</p>
         <div className="jobcard-companyDetails">
           <img src={iconImage} alt="iconImage" />
           <div className="jobcard-companyDetails-text">
@@ -139,7 +139,7 @@ export default function JobCards() {
               className="jobcard-about-ViewJob"
               onClick={() => setId(item.jdUid)}
             >
-              Expand
+              Read More..
             </div>
           </div>
         )}

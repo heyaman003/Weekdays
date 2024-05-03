@@ -116,11 +116,12 @@ export default function SearchFilters() {
           background: "green",
           width: "fit-content",
           color: "white",
-          padding: "10px",
+          padding: "10px 20px",
           cursor: "pointer",
+          borderRadius:"5px"
         }}
       >
-        Reset
+        Reset..
       </button>
     </div>
   );

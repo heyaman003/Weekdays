@@ -1,7 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-// const myHeaders = new Headers();
-// myHeaders.append("Content-Type", "application/json");
 
 export const JobDataService = createApi({
   reducerPath: "jobs",
